@@ -6,10 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductDTO {
-    private Long Id;
-    private String Name;
-    private String Description;
-    private String ImageUrl;
-    private Double Price;
+    private Long id;
+    private String name;
+    private String description;
+    private String imageUrl;
+    private Double price;
     private CategoryDTO category;
 }
