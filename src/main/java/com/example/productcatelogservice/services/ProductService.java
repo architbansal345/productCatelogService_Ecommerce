@@ -18,6 +18,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.ResponseCache;
+import java.util.List;
 
 @Service
 public class ProductService implements IProductService {
@@ -46,6 +47,21 @@ public class ProductService implements IProductService {
             return mapper.from(fakeStoreDtores.getBody());
         }
         return null;
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        return null;
+    }
+
+    @Override
+    public void deleteProductById(Long id) {
+
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return List.of();
     }
 
     public <T> ResponseEntity<T> putForEntity(String url, @Nullable Object request, Class<T> responseType, Object... uriVariables) throws RestClientException {

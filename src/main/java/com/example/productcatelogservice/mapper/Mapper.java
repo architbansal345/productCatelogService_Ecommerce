@@ -47,20 +47,32 @@ public class Mapper {
         return dto;
     }
 
-    public ProductDTO Pfrom(Product product){
+    public ProductDTO Pfrom(Product product) {
         if (product == null) {
             return null;
         }
+
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());
         productDTO.setDescription(product.getDescription());
         productDTO.setImageUrl(product.getImageURL());
         productDTO.setPrice(product.getPrice());
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setName(product.getCategory().getName());
-        categoryDTO.setDescription(product.getCategory().getDescription());
-        productDTO.setCategory(categoryDTO);
+
+        // Check whether the product has a category
+        if (product.getCategory() != null) {
+            CategoryDTO categoryDTO = new CategoryDTO();
+
+            categoryDTO.setName(product.getCategory().getName());
+            categoryDTO.setDescription(
+                    product.getCategory().getDescription()
+            );
+
+            productDTO.setCategory(categoryDTO);
+        } else {
+            productDTO.setCategory(null);
+        }
+
         return productDTO;
     }
 
