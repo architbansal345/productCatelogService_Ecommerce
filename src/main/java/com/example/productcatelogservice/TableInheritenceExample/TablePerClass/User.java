@@ -7,7 +7,7 @@ import jakarta.persistence.InheritanceType;
 
 import java.util.UUID;
 
-@Entity(name = "tpc_users")
+//@Entity(name = "tpc_users")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
     @Id

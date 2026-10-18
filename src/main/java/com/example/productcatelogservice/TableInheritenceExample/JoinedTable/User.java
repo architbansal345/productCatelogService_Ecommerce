@@ -7,7 +7,7 @@ import jakarta.persistence.InheritanceType;
 
 import java.util.UUID;
 
-@Entity(name = "joined_users")
+//@Entity(name = "joined_users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id

@@ -1,9 +1,13 @@
 package com.example.productcatelogservice.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -13,6 +17,8 @@ import java.util.List;
 public class Category extends BaseModel {
     private String name;
     private String description;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category" ,fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    @BatchSize(size = 2)
     private List<Product> products;
 }
