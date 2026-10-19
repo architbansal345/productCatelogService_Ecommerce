@@ -27,7 +27,7 @@ public class ProductController {
     private Mapper mapper;
 
     @GetMapping("/{id}")
-    private ResponseEntity<ProductDTO> getProductDetailsById(@PathVariable Long id){
+    public ResponseEntity<ProductDTO> getProductDetailsById(@PathVariable Long id){
         if(id < 0L){
             throw new IllegalArgumentException("Id cannot be -ve");
         }
@@ -40,7 +40,7 @@ public class ProductController {
 
 
     @PutMapping("/{id}")
-    private ResponseEntity<ProductDTO> updateProducts(@PathVariable Long id , @RequestBody ProductDTO productDTO){
+    public ResponseEntity<ProductDTO> updateProducts(@PathVariable Long id , @RequestBody ProductDTO productDTO){
         Product input = mapper.from(productDTO);
         input.setId(id);
         Product output = productService.updateProductDetails(id,input);
@@ -48,19 +48,19 @@ public class ProductController {
     }
 
     @PostMapping
-    private ResponseEntity<ProductDTO> createProducts(@RequestBody ProductDTO productDTO){
+    public ResponseEntity<ProductDTO> createProducts(@RequestBody ProductDTO productDTO){
         Product input = mapper.from(productDTO);
         Product output = productService.createProduct(input);
         return new ResponseEntity<>(mapper.Pfrom(output),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<Void> deleteProductById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteProductById(@PathVariable Long id){
         productService.deleteProductById(id);
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
     @GetMapping
-    private ResponseEntity<List<ProductDTO>> getProductDetailsById(){
+    public ResponseEntity<List<ProductDTO>> getProductDetailsById(){
         List<Product> products =  productService.getAllProducts();
         List<ProductDTO>res = new ArrayList<>();
         for(Product i : products){
